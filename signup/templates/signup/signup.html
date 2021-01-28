@@ -1,0 +1,91 @@
+{% load static %}
+<head>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+    <link href="{% static 'register/css/style.css' %}" rel="stylesheet" type="text/css" media="all">
+    <link href="//fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}" type="text/css" media="all">
+    <link href="//fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login/css/font-awesome.css' %}" type="text/css" media="all">
+</head>
+<body>
+{% block content %}
+    <div class="content-w3ls">
+        <div class="content-top-agile">
+            <h2>Register</h2>
+        </div>
+        <div class="content-bottom">
+            <form method="post">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="input-error">
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+                <div class="field-group">
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        <label for="Name"></label>{{ form.fullname }}
+                    </div>
+                </div>
+                <div class="field-group">
+                    <span class="fa fa-at" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        <label for="email"></label>{{ form.email }}
+                    </div>
+                </div>
+                <div class="field-group">
+                    <span class="fa fa-phone" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        <label for="Contact No."></label>{{ form.cell_number }}
+                    </div>
+                </div>
+                <div class="field-group">
+                    <span class="fa fa-lock" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        {{ form.password1 }}
+                    </div>
+                </div>
+                <div class="field-group">
+                    <span class="fa fa-lock" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                <div class="wthree-field">
+                    <input id="saveForm" name="saveForm" type="submit" value="Register"/>
+                </div>
+                <div class="wthree-field">
+                    <a href="/">Go to home</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-w3l">
+        <p>&copy; 2020 Classy Register Form. All rights reserved | Design by <a
+                href="#">Nasir</a></p>
+    </div>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <script type="text/javascript" src="{% static 'register/js/jquery-2.1.4.min.js' %}"></script>
+    <script>$(document).ready(function (c) {
+        $('.alert-close').on('click', function (c) {
+            $('.main-agile').fadeOut('slow', function (c) {
+                $('.main-agile').remove();
+            });
+        });
+    });</script>
+{% endblock %}
+</body>

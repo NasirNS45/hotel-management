@@ -1,0 +1,184 @@
+{% load static %}
+<head>
+    <title> Hotel 4 U </title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/images/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/images/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/images/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'app/images/favicons/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'app/images/favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <link rel="icon" href="{% static 'app/fonts/glyphicons-halflings-regular.eot' %}">
+    <link rel="icon" href="{% static 'app/fonts/glyphicons-halflings-regular.html' %}">
+    <link rel="icon" href="{% static 'app/fonts/glyphicons-halflings-regular.svg' %}">
+    <link rel="icon" href="{% static 'app/fonts/glyphicons-halflings-regular.ttf' %}">
+    <link rel="icon" href="{% static 'app/fonts/glyphicons-halflings-regular.woff' %}">
+    <link rel="icon" href="{% static 'app/fonts/slick.eot' %}">
+    <link rel="icon" href="{% static 'app/fonts/slick.ttf' %}">
+    <link rel="icon" href="{% static 'app/fonts/slick.woff' %}">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'app/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-select.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/jquery-ui-date.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/form-wizard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/color.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}"/>
+    <!-- Javascript Files -->
+    <script type="text/javascript" src="{% static 'app/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/bootstrap-select.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/bootstrap-datepicker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/jquery-ui-date.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/slick.min.js' %}"></script>
+    <!-- Date Javascript Files -->
+    <script type="text/javascript" src="{% static 'app/js/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/fullcalendar.js' %}"></script>
+    <!-- Theme Functions -->
+    <script type="text/javascript" src="{% static 'app/js/form-wizard.js' %}"></script>
+    <script type="text/javascript" src="{% static 'app/js/themefunction.js' %}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRT65GS3xsCaeqfhBNIip1OKDdvOIHXho"></script>
+    <script>
+        $(document).ready(function () {
+            $("#login").hover(function () {
+                $(this).css("background-color", "#32CD32");
+            }, function () {
+                $(this).css("background-color", "#357EC7");
+            });
+            $("#register").hover(function () {
+                $(this).css("background-color", "#32CD32");
+            }, function () {
+                $(this).css("background-color", "#DC143C");
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Check if the current URL contains '#'
+            let url;
+            if (document.URL.indexOf("#") === -1) {
+                // Set the URL to whatever it was plus "#".
+                url = document.URL + "#";
+                location = "#";
+                //Reload the page
+                window.location.reload(true);
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        //********** Contact Snazzy Map **********//
+        // When the window has finished loading create our google map below
+        google.maps.event.addDomListener(window, 'load', init);
+
+        function init() {
+            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+            const mapOptions = {
+                // How zoomed in you want the map to start at (always required)
+                zoom: 11,
+
+                // The latitude and longitude to center the map (always required)
+                center: new google.maps.LatLng(17.4933, 78.3915), // New York
+
+                // This is where you would paste any style found on Snazzy Maps.
+                styles: [{
+                    "featureType": "administrative",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{"color": "#444444"}]
+                }, {
+                    "featureType": "landscape",
+                    "elementType": "all",
+                    "stylers": [{"color": "#f2f2f2"}]
+                }, {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": [{"visibility": "off"}]
+                }, {
+                    "featureType": "road",
+                    "elementType": "all",
+                    "stylers": [{"saturation": -100}, {"lightness": 45}]
+                }, {
+                    "featureType": "road.highway",
+                    "elementType": "all",
+                    "stylers": [{"visibility": "simplified"}]
+                }, {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.icon",
+                    "stylers": [{"visibility": "off"}]
+                }, {
+                    "featureType": "transit",
+                    "elementType": "all",
+                    "stylers": [{"visibility": "off"}]
+                }, {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [{"color": "#D5A677"}, {"visibility": "on"}]
+                }]
+            };
+            // Get the HTML DOM element that will contain your map
+            // We are using a div with id="map" seen below in the <body>
+            const mapElement = document.getElementById('map');
+
+            // Create the Google Map using our element and options defined above
+            const map = new google.maps.Map(mapElement, mapOptions);
+
+            // Let's also add a marker while we're at it
+            const marker = new google.maps.Marker({
+                position: new google.maps.LatLng(17.4933, 78.3915),
+                map: map,
+                title: 'Snazzy!'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        // DatePicker
+        $(function () {
+            const $dp1 = $("#datepicker_CIn");
+            $dp1.datepicker({
+                changeMonth: true,
+                changeYear: true,
+                minDate: 0
+            });
+            const $dp2 = $("#datepicker_COut");
+            $dp2.datepicker({
+                changeMonth: true,
+                minDate: 0
+            });
+            $("#datepicker_CIn").datepicker();
+            $("#datepicker_COut").datepicker();
+            //Pass the user selected date format
+            $("#format").change(function () {
+                $("#datepicker_CIn").datepicker("option", "dateFormat: 'yyyy-mm-dd'", $(this).val());
+                $("#datepicker_COut").datepicker("option", "dateFormat: 'yyyy-mm-dd'", $(this).val());
+            });
+        });
+
+        function handler(e) {
+            let today = new Date();
+            const dd = today.getDate();
+            const mm = today.getMonth() + 1; //January is 0!
+            const yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+            const selected = e.target.value;
+            if (selected > today) {
+                alert("please selected above today date");
+                $('#datepicker_CIn').val('');
+                $('#datepicker_COut').val('');
+            }
+        }
+
+        function date(f) {
+            const cin = document.getElementById("datepicker_CIn").value;
+            const cout = document.getElementById("datepicker_COut").value;
+            if (cout < cin) {
+                alert("Check out date cannot be less than check in date");
+                $('#datepicker_COut').val('');
+            }
+        }
+    </script>
+</head>
+    {% include 'includes/_navbar.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'includes/_footer.html' %}
+    <div id="back_to_top" class="active">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>

@@ -1,0 +1,83 @@
+{% block body %}
+ <script>
+     function logoutFunction() {
+            window.location.reload();
+        }
+ </script>
+<script>
+    $(document).ready(function () {
+        $("#admin").hover(function(){
+            $(this).css("background-color", "#32CD32");
+            }, function(){
+        $(this).css("background-color", "#FF8C00");
+            });
+        $("#booking").hover(function(){
+            $(this).css("background-color", "#32CD32");
+            }, function(){
+        $(this).css("background-color", "#357EC7");
+            });
+         $("#logout").hover(function(){
+            $(this).css("background-color", "#32CD32");
+            }, function(){
+        $(this).css("background-color", "#DC143C");
+        });
+    });
+</script>
+    <header class="rh">
+        <div class="rh-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                        
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                        <ul class="pull-right">
+                            {% if request.user.is_authenticated %}
+                            <li>
+                                 <a href="{% url 'app:history' %}"> <input type="button" id ="booking" class="button" value="Booking History"></a>
+                            </li>
+                            <li>
+                                 <a href="{% url 'accounts:logout' %}"> <input type="button" id ="logout" class="button1" value="Logout" onclick="logoutFunction()"></a>
+                            </li>
+                        {% else %}
+                            <li>
+                                 <a href="{% url 'accounts:register' %}"> <input type="button" class="button" value="Register"></a>
+                            </li>
+                            <li>
+                                 <a href="{% url 'accounts:login' %}"> <input type="button" class="button1" value="Login"></a>
+                            </li>
+
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="rh navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><h2>Hotel4U</h2></a>
+                </div>
+                <div class="collapse navbar-collapse rh-toggle" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right main-navbar">  
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app:rooms' %}">Rooms</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app:booking' %}">Booking</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app:about' %}">About</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app:contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}

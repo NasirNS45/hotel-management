@@ -1,0 +1,59 @@
+﻿{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}" type="text/css" media="all">
+    <link href="//fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login/css/font-awesome.css' %}" type="text/css" media="all">
+    <title>Login</title>
+</head>
+
+<body>
+
+<h1 class="title-agile text-center"></h1>
+<div class="content-w3ls">
+    <div class="content-top-agile">
+        <h2>Sign in to proceed</h2>
+
+    </div>
+    <div class="content-bottom">
+        <form method="post">
+            {% csrf_token %}
+            {% if form.error %}
+                <ul class="messages">
+                    {{ form.error }}
+                </ul>
+            {% endif %}
+            <div class="field-group">
+                <span class="fa fa-user" aria-hidden="true"></span>
+                <div class="wthree-field">
+                    {{ form.username }}
+                </div>
+            </div>
+            <div class="field-group">
+                <span class="fa fa-lock" aria-hidden="true"></span>
+                <div class="wthree-field">
+                    {{ form.password }}
+                </div>
+            </div>
+
+            <div class="wthree-field">
+                <input id="saveForm" name="saveForm" type="submit" value="Log In"/>
+            </div>
+
+        </form>
+        <br>
+
+        <div style="text-align: center;">
+            <a href="{% url 'app:forgot' %}" class="text-center">Forgot password?</a> &nbsp;
+            <a href="{% url 'accounts:register' %}" class="text-center">Create account</a>
+            <br>
+        </div>
+
+    </div>
+</div>
+<div class="copyright text-center">
+    <p>
+        © 2018 Switch Login Form. All rights reserved | Design by Nasir
+    </p>
+</div>
+</body>

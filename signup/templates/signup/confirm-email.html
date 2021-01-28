@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block script %}
+    <script>
+        function ResendEmail() {
+            $.ajax({
+                type: "GET",
+                url: '/accounts/confirm_email_retry/{{ uid }}/{{ token }}',
+                success: onResend,
+                dataType: 'html'
+            });
+        }
+
+        function onResend() {
+            $('#mailSend').css('display', 'block');
+            swal("Email Resent", "Email has sent to {{ user.email }}", "success");
+        }
+    </script>
+    <script src="{% static "register/js/sweetalert.min.js" %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="dashboard-status-sec">
+        <div class="row" style="margin: 0">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="margin-top: 35px; min-height: 400px; border-top: 2px solid #3d4c95">
+                <h3 class="">Confirm Your Email Address</h3><br>
+                <div>
+                    <p style="margin-top: 35px">
+                        <b>Hi {{ user.username }},</b>
+                    </p><br>
+                    <p style="margin-top: 35px">Thank you! Your Information have been successfully added </p>
+                        <br>
+                    <p style="margin-top: 35px">
+                        Kindly confirm your email <b>{{ user.email }}</b>.
+                        If you have'nt receive email yet.
+
+                    </p>
+                    <div style="margin-top: 35px">
+                        <button style="background: #6978bf; border: 0; margin-left: 0;" class="btn btn-primary"
+                                onclick="ResendEmail()">Resend Email
+                        </button>
+                    </div>
+
+                    <!-- <div style="display: none;background: lightgreen; margin-top: 30px;" id="mailSend">Email is sent to {{ user.email }}</div> -->
+
+                </div>
+
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+

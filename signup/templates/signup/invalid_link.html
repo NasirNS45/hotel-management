@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content_body %}
+    <div class="main-body">
+        <div class="clearfix"></div>
+            <div class="container padding-bg home-banner-sec">
+                <div class="col-md-6 pb-5 pt-5 center-form">
+                    <div class="row">
+                        <div class="col-md-12 invalid-link-page">
+{#                            <img src="{% static "images/link-icon.png" %}">#}
+                            <h3 class="primary-font">Invalid Activation Link!</h3>
+                        </div>
+                    </div>
+                </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}
+{% block script %}
+{#    <script src="{% static "js/maps.js" %}"></script>#}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgOL7lDzLXJ1-VMLGE11yVo4IOyGrkp-E&libraries=places&callback=initAutocomplete"
+        async defer></script>
+        <script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    $(document).ready(function () {
+        $("#id_avatar").change(function () {
+            readURL(this)
+        })
+    });
+    </script>
+{#    <script src="{% static 'js/validators/user_profile_validator.js' %}"></script>#}
+{% endblock %}
